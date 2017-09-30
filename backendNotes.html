@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+
+
+<script>
+/* 
+GLOBAL VARIABLES
+=================
+api key
+baseURL
+term
+numResults
+startYear
+endYear
+articleConter
+
+FUNCTIONS
+==========
+-ajax call should be wrapped with in a runQuery function that takes the specified number of articles and updated query URl as parameters
+
+-onClick event as main process to convert user input to variables, includes optional search items, runs function
+
+*/
+
+	var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=93280b424960492ba61abb53ce976d26&q=" + term;
+	var term = "iran";
+
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).done(function(response) {
+      	console.log(response);
+      });
+
+
+</script>
+</body>
+</html>	
