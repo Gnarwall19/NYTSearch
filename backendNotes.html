@@ -6,6 +6,11 @@
 </head>
 <body>
 
+ <div class="form-group">
+          <label for="exampleFormControlTextarea1">Example textarea</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          <button for="exampleFormControlTextarea1" type="submit" id="submitButton">SUBMIT</button>
+        </div>
 
 
 <script>
@@ -28,16 +33,36 @@ FUNCTIONS
 
 */
 
-	var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=93280b424960492ba61abb53ce976d26&q=" + term;
-	var term = "travel ban";
+	var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=93280b424960492ba61abb53ce976d26&q=";
+	var term;
+  var numResults
 
+    function search(URL) {    //Add articleLimit param
       $.ajax({
-        url: queryURL,
+        url: URL,
         method: "GET"
-      }).done(function(response) {
-      	console.log(response);
-      });
+      }).done(function(nyData) {
+      	console.log(nyData);
+        console.log(nyData.response.docs[0].headline.main);
+        console.log(nyData.response.docs[0].byline.original);
+        console.log(nyData.response.docs[0].section_name);
+        console.log(nyData.response.docs[0].pub_date);
+        console.log(nyData.response.docs[0].web_url);
 
+        term = $("#exampleFormControlTextarea1").val().trim();
+      });
+  }
+
+$("#submitButton").on("click", function() {
+
+    term = $("#exampleFormControlTextarea1").val().trim();
+    var searchURL = queryURL + term;
+
+    console.log(searchURL);
+
+    search(searchURL)
+
+});
 
 </script>
 </body>
